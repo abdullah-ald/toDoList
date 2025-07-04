@@ -12,6 +12,9 @@ const Intro = () => {
       addTaskToArray(input);
       setInput(""); // Clear input field
     }
+    else{
+      alert("cant enter empty task")
+    }
   };
 
   const addTaskToArray = (taskText) => {
@@ -30,10 +33,14 @@ const Intro = () => {
   console.log(tasks)
 
   const handledelete =(id)=>{
-   const tasksToDelete= JSON.parse(localStorage.getItem("tasks"));
+    const allow=window.confirm("you want to delete this task");
+   if(allow){
+    const tasksToDelete= JSON.parse(localStorage.getItem("tasks"));
    const newtasks=tasksToDelete.filter(task=>task.id!==id);
      setTasks(newtasks);
     localStorage.setItem("tasks", JSON.stringify(newtasks)); // Save as a string
+   }
+
   }
 
   // Load tasks from localStorage on component mount
